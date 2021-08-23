@@ -76,6 +76,7 @@ const onlyRemainders = (array) => {
 
 // a) Create a test with an expect statement using the variables provided.
 
+
 var cubeAndSum1 = [2, 3, 4]
 // Expected output: 99
 var cubeAndSum2 = [0, 5, 10]
@@ -86,6 +87,9 @@ describe ("cuber", () => {
       expect(cuber(cubeAndSum2)).toContain(99)
   })
 })
+//create function cuber prolly should have said cuberSum
+//for each value cube and sum
+// return sum
 const cuber = (array) => {
     let sum = 0
     array.forEach(value => sum += value ** 3)
