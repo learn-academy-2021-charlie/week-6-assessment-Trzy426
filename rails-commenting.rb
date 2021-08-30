@@ -11,20 +11,24 @@ class BlogPostsController < ApplicationController
   def index
     # ---2)
     @posts = BlogPost.all
+    # creation part of the blogpost.
   end
+  
 
   def show
     # ---3)
     @post = BlogPost.find(params[:id])
   end
-
+ #finds a specific blog post by id
   # ---4)
   def new
     @post = Post.new
   end
+  # this allows for the creation of a new blog post.
 
   def create
     # ---5)
+    #calls the creation of blog post via create, and checks to make sure the blog post itself is valid with the (blog_post_params)
     @post = BlogPost.create(blog_post_params)
     if @post.valid?
       redirect_to blog_post_path(@post)
@@ -36,11 +40,13 @@ class BlogPostsController < ApplicationController
   # ---6)
   def edit
     @post = BlogPost.find(params[:id])
+    # this again find a blog post based on its ID, to be edited
   end
 
   def update
     @post = BlogPost.find(params[:id])
     # ---7)
+    # first finds the blog post via ID, then updates it while then checking if the post is valid via blog post params
     @post.update(blog_post_params)
     if @post.valid?
       redirect_to blog_post_path(@post)
@@ -55,6 +61,7 @@ class BlogPostsController < ApplicationController
       redirect_to blog_posts_path
     else
       # ---8)
+      #this finds based on ID then calls on the destroy to delete the specific blog post, if theres no path then the else calls to do nothing
       redirect_to blog_post_path(@post)
     end
   end
@@ -63,6 +70,7 @@ class BlogPostsController < ApplicationController
   private
   def blog_post_params
     # ---10)
+    #this checks the params of the blog post to only except a title and content to ensure security of the program.
     params.require(:blog_post).permit(:title, :content)
   end
 end
